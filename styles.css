@@ -900,3 +900,8 @@
     width: 90vw;
   }
 }
+
+.card-img-overlay {
+  display: block;
+  margin-left: 5rem;
+}
