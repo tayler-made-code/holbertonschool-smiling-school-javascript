@@ -901,7 +901,32 @@
   }
 }
 
-.card-img-overlay {
-  display: block;
-  margin-left: 5rem;
+/* .slick-prev {
+  background-image: url('/images/arrow_black_left.png');
+ }
+ 
+ .slick-next {
+  background-image: url('/images/arrow_black_right.png');
+ } */
+
+ .slick-prev,
+.slick-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 24px; /* Adjust font size as needed */
+  color: #ffffff; /* Adjust color as needed */
+  background-color: #333333; /* Adjust background color as needed */
+  border: none;
+  outline: none;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.slick-prev {
+  left: 10px; /* Adjust left offset as needed */
+}
+
+.slick-next {
+  right: 10px; /* Adjust right offset as needed */
 }

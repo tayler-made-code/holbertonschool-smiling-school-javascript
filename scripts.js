@@ -1,6 +1,6 @@
 const quoteSection = document.querySelector("#quote-carousel") // Target the quote section
 const loader = document.querySelector("#loader"); // Target the loader
-const popularVideos = document.querySelector("#popularVideos"); // Target the popular videos section
+const popularVideos = document.querySelector("#videoSlider"); // Target the popular videos section
 const latestVideos = document.querySelector("#latestVideos"); // Target the latest videos section
 
 $(document).ready(function () { // When the pages loads, fetch the quotes
@@ -8,14 +8,38 @@ $(document).ready(function () { // When the pages loads, fetch the quotes
   console.log(window.location.pathname);
   if (window.location.pathname == "/0-homepage.html") {
     loader.classList.remove("d-none");
-    $("#videoSlider").slick({
-      slidesToShow: 4,
-      slidesToScroll: 1,
-      autoplay: true,
-      autoplaySpeed: 2000,
-    });
     fetchQuotes();
-    fetchVideos(popularVideos);
+    fetchVideos(popularVideos)
+      .then(() => {
+        $("#videoSlider").slick({
+          arrows: true,
+          mobileFirst: true,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          autoplay: true,
+          autoplaySpeed: 2000,
+          infinite: true,
+          prevArrow: $('.slick-prev'),
+          nextArrow: $('.slick-next'),
+          responsive: [
+            {
+              breakpoint: 577,
+              settings: {
+                slidesToShow: 2,
+              }
+            },
+            {
+              breakpoint: 768,
+              settings: {
+                slidesToShow: 4,
+              }
+            }
+          ]
+        });
+      })
+      .catch((error) => {
+        console.log("Ain't so slick now", error);
+      });
     // fetchVideos(latestVideos);
   }
 
@@ -98,33 +122,119 @@ function fetchQuotes() {  // Fetch the quotes from the API
 }
 
 function fetchVideos(section) {
-  // Check to see which section is being called
-  if (section === popularVideos) {
-    fetch("https://smileschool-api.hbtn.info/popular-tutorials")
-      .then((response) => response.json())
-      .then((videos) => {
-        console.log(videos); // For testing purposes
+  return new Promise((resolve, reject) => {
+    // Check to see which section is being called
+    if (section === popularVideos) {
+      fetch("https://smileschool-api.hbtn.info/popular-tutorials")
+        .then((response) => response.json())
+        .then((videos) => {
+          console.log(videos); // For testing purposes
 
-        // Loop through the videos and add them to the page
-        videos.forEach((video) => {
-          // set the variables for the video info
-          let videoPreview = video.thumb_url;
-          let videoTitle = video.title;
-          // Use bracket notation for sub-title due to hyphen
-          let subTitle = video['sub-title'];
-          let authorPhoto = video.author_pic_url;
-          let authorName = video.author;
-          let ratingStars = video.star;
-          let videoDuration = video.duration;
+          // Loop through the videos and add them to the page
+          videos.forEach((video) => {
+            // set the variables for the video info
+            let videoPreview = video.thumb_url;
+            let videoTitle = video.title;
+            // Use bracket notation for sub-title due to hyphen
+            let subTitle = video['sub-title'];
+            let authorPhoto = video.author_pic_url;
+            let authorName = video.author;
+            let ratingStars = video.star;
+            let videoDuration = video.duration;
 
-          // create carousel with slick slider
-          
+            // create carousel with slick slider
+            let videoCard = document.createElement("div");
+            videoCard.classList.add("card", "px-3");
+            
+            let videoImg = document.createElement("img");
+            videoImg.classList.add("card-img-top");
+            videoImg.setAttribute("src", videoPreview);
+            videoImg.setAttribute("alt", `Video thumbnail`);          
+
+            let videoOverlay = document.createElement("div");
+            videoOverlay.classList.add("card-img-overlay", "text-center");
+
+            let playButton = document.createElement("img");
+            playButton.classList.add("play-overlay", "align-self-center");
+            playButton.setAttribute("src", "images/play.png");
+            playButton.setAttribute("alt", "Play");
+            playButton.setAttribute("width", "64px");
+
+            let videoCardBody = document.createElement("div");
+            videoCardBody.classList.add("card-body");
+
+            let h5VideoTitle = document.createElement("h5");
+            h5VideoTitle.classList.add("card-title", "font-weight-bold");
+            h5VideoTitle.innerHTML = videoTitle;
+
+            let paragraphSubTitle = document.createElement("p");
+            paragraphSubTitle.classList.add("card-text", "text-muted");
+            paragraphSubTitle.innerHTML = subTitle;
+
+            let videoInfo = document.createElement("div");
+            videoInfo.classList.add("creator", "d-flex", "align-items-center");
+
+            let authorImg = document.createElement("img");
+            authorImg.classList.add("rounded-circle");
+            authorImg.setAttribute("src", authorPhoto);
+            authorImg.setAttribute("alt", "Creator of Video");
+            authorImg.setAttribute("width", "30px");
+
+            let h6AuthorName = document.createElement("h6");
+            h6AuthorName.classList.add("pl-3", "m-0", "main-color");
+            h6AuthorName.innerHTML = authorName;
+
+            let ratingsAndDuration = document.createElement("div");
+            ratingsAndDuration.classList.add("d-flex", "align-items-center", "pt-3", "info", "justify-content-between");
+
+            let rating = document.createElement("div");
+            rating.classList.add("d-inline-flex", "rating");
+
+            // for each ratingStar, create a star with the on class, if the ratingStar
+            // is less than 5, create a star with the off class until 5
+            for (let i = 0; i < 5; i++) {
+              let star = document.createElement("img");
+              if (i < ratingStars) {
+                star.classList.add("on");
+                star.setAttribute("src", "images/star_on.png")
+                star.setAttribute("alt", "star on");
+              } else {
+                star.classList.add("off");
+                star.setAttribute("src", "images/star_off.png")
+                star.setAttribute("alt", "star off");
+              }
+              star.setAttribute("width", "15px");
+              rating.appendChild(star);
+            }
+
+            let duration = document.createElement("span");
+            duration.classList.add("main-color");
+            duration.innerHTML = videoDuration;
+            
+            // append the elements to the page
+            popularVideos.appendChild(videoCard);
+            videoCard.appendChild(videoImg);
+            videoCard.appendChild(videoOverlay);
+            videoOverlay.appendChild(playButton);
+            videoCard.appendChild(videoCardBody);
+            videoCardBody.appendChild(h5VideoTitle);
+            videoCardBody.appendChild(paragraphSubTitle);
+            videoCardBody.appendChild(videoInfo);
+            videoInfo.appendChild(authorImg);
+            videoInfo.appendChild(h6AuthorName);
+            videoCardBody.appendChild(ratingsAndDuration);
+            ratingsAndDuration.appendChild(rating);
+            ratingsAndDuration.appendChild(duration);
+
+          });
+          resolve();
+        })
+        .catch((error) => {
+          console.log("error", error);
+          reject();
         });
-      })
-      .catch((error) => {
-        console.log("error", error);
-      });
-  } else {
-    console.log("not popular videos")
-  }
+    } else {
+      console.log("not popular videos")
+    }
+  });
 }
