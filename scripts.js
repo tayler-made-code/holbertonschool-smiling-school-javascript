@@ -19,8 +19,6 @@ $(document).ready(function () { // When the pages loads, fetch the quotes
           autoplay: true,
           autoplaySpeed: 2000,
           infinite: true,
-          prevArrow: $('.slick-prev'),
-          nextArrow: $('.slick-next'),
           responsive: [
             {
               breakpoint: 577,
