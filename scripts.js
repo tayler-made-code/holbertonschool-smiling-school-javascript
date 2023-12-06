@@ -12,6 +12,14 @@ const latestLoader = document.querySelector("#latestLoader"); // Target the load
 const coursesSection = document.querySelector("#coursesContainer"); // Target the courses section
 const courseLoader = document.querySelector("#courseLoader"); // Target the loader
 
+const searchButton = document.querySelector("#searchButton"); // Target the search button
+
+const topicDropdown = document.querySelector("#topicDropdown"); // Target the topic dropdown
+const topicTitle = document.querySelector("#topicTitle"); // Target the topic title
+
+const sortDropdown = document.querySelector("#sortDropdown"); // Target the sort dropdown
+const sortTitle = document.querySelector("#sortTitle"); // Target the sort title
+
 $(document).ready(function () { // When the pages loads, fetch the quotes
   // call fetchQuotes and fetchVideos if the page is the homepage
   console.log(window.location.pathname);
@@ -20,7 +28,6 @@ $(document).ready(function () { // When the pages loads, fetch the quotes
     fetchQuotes();
     popLoader.classList.remove("d-none");
     fetchVideos(popularVideos)
-      // then fetchVideos for the latest videos
       .then(() => {
         $("#popVideos").slick({
           arrows: true,
@@ -51,7 +58,6 @@ $(document).ready(function () { // When the pages loads, fetch the quotes
       });
       latestLoader.classList.remove("d-none");
       fetchVideos(latestVideos)
-      // then fetchVideos for the latest videos
       .then(() => {
         $("#latestVideos").slick({
           arrows: true,
@@ -90,7 +96,8 @@ $(document).ready(function () { // When the pages loads, fetch the quotes
 
   // call fetchCourses if the page is the courses page
   if (window.location.pathname == "/0-courses.html" || window.location.pathname == "/courses.html") {
-    // courseLoader.classList.remove("d-none");
+    courseLoader.classList.remove("d-none");
+    setTopicsAndSort();
     fetchCourses();
   }
 });
@@ -306,16 +313,20 @@ function createVideoCard(video) {
   return videoCard;
 }
 
-function fetchCourses(q, topic = "all", sort = "most_popular") {
-
+function fetchCourses(q, topic, sort) {
   // set the url and check if there is a keyword
-  let url = q ? `https://smileschool-api.hbtn.info/courses?q=${q}&topic=${topic}&sort=${sort}` : `https://smileschool-api.hbtn.info/courses/?topic=${topic}&sort=${sort}`;
+  let url = q ? 
+  `https://smileschool-api.hbtn.info/courses?q=${q}&topic=${topic}&sort=${sort}` : 
+  `https://smileschool-api.hbtn.info/courses/?topic=${topic}&sort=${sort}`;
 
-  console.log(url);
+  console.log(url); // For testing purposes
 
   fetch(url)
     .then((response) => response.json())
     .then((results) => {
+      // Remove the loader
+      courseLoader.classList.add("d-none");
+      
       console.log(results); // For testing purposes
 
       // console.log how many courses there are
@@ -355,10 +366,101 @@ function fetchCourses(q, topic = "all", sort = "most_popular") {
         courseRow.appendChild(courseSizing);
         courseSizing.appendChild(courseCard);
       });
-
-
     })
     .catch((error) => {
       console.log("error", error);
     });
 } 
+
+function setTopicsAndSort() {
+  fetch('https://smileschool-api.hbtn.info/courses')
+    .then((response) => response.json())
+    .then((results) => {
+      // customize dropdown menu options for Topic
+      const topics = results.topics;
+      
+      topics.forEach((topic) => {
+        let topicOption = document.createElement("a");
+        topicOption.classList.add("dropdown-item", "text-capitalize");
+        topicOption.setAttribute("href", "#");
+        topicOption.innerHTML = topic;
+        document.querySelector("#topicDropdown").appendChild(topicOption);
+      });
+
+      // customize dropdown menu options for Sort By
+      const sorts = results.sorts;
+
+      sorts.forEach((sort) => {
+        let sortOption = document.createElement("a");
+        sortOption.classList.add("dropdown-item");
+        sortOption.setAttribute("href", "#");
+        //remove the underscore and capitalize the first letter of each word
+        sort = sort.replace(/_/g, " ").replace(/\b\w/g, l => l.toUpperCase());
+        sortOption.innerHTML = sort;
+        document.querySelector("#sortDropdown").appendChild(sortOption);
+      });
+    })
+    .catch((error) => {
+      console.log("error", error);
+    }); 
+}
+
+// Search Event Listeners
+document.querySelector("#searchBar").addEventListener("keyup", (event) => {
+  if (event.keyCode === 13) {
+    advancedSearch(searchBar.value, topicTitle.innerHTML, sortTitle.innerHTML);
+  }
+});
+document.querySelector("#searchButton").addEventListener("click", () => {
+  advancedSearch(searchBar.value, topicTitle.innerHTML, sortTitle.innerHTML);
+});
+
+// when a dropdown item is clicked, change the dropdown button text
+// and then call advancedSearch
+document.querySelector("#topicDropdown").addEventListener("click", () => {
+  new Promise ((resolve) => {
+    let topic = event.target.innerHTML;
+    topic = topic.replace(/\b\w/g, l => l.toUpperCase());
+    topicTitle.innerHTML = topic;
+    resolve();
+  })
+  .then(() => {
+    advancedSearch(searchBar.value, topicTitle.innerHTML, sortTitle.innerHTML);
+  })
+  .catch((error) => {
+    console.log("error", error);
+  });
+});
+
+// when a dropdown item is clicked, change the dropdown button text
+// and then call advancedSearch
+document.querySelector("#sortDropdown").addEventListener("click", () => {
+  new Promise ((resolve) => {
+    let topic = event.target.innerHTML;
+    topic = topic.replace(/\b\w/g, l => l.toUpperCase());
+    sortTitle.innerHTML = topic;
+    resolve();
+  })
+  .then(() => {
+    advancedSearch(searchBar.value, topicTitle.innerHTML, sortTitle.innerHTML);
+  })
+  .catch((error) => {
+    console.log("error", error);
+  });
+});
+
+
+
+function advancedSearch(q, topic, sort) {
+  // clear the courses section and add the loader
+  coursesSection.innerHTML = '';
+  courseLoader.classList.remove("d-none");
+
+  // let advancedSearchTopic = topicTitle.innerHTML;
+  // advancedSearchTopic = advancedSearchTopic.slice(1).toLowerCase();
+  let advancedSearchTopic = topic.toLowerCase();
+  let advancedSearchSort = sort.replace(/ /g, "_").toLowerCase();
+
+  // fetch the filtered courses
+  fetchCourses(searchBar.value, advancedSearchTopic, advancedSearchSort);
+}

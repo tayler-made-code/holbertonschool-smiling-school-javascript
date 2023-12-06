@@ -122,7 +122,7 @@ f<!DOCTYPE html>
               >
 
               <div class="input-group mb-sm-4">
-                <div class="input-group-prepend">
+                <div class="input-group-prepend" id="searchButton">
                   <span
                     class="input-group-text holberton_school-icon-search_1"
                   ></span>
@@ -133,6 +133,7 @@ f<!DOCTYPE html>
                   aria-label="Default"
                   aria-describedby="inputGroup-sizing-default"
                   placeholder="Search by keywords"
+                  id="searchBar"
                 />
               </div>
             </div>
@@ -150,16 +151,14 @@ f<!DOCTYPE html>
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-                  <span>Novice</span>
+                  <span id="topicTitle">All</span>
                 </a>
 
                 <div
                   class="dropdown-menu mt-0"
                   aria-labelledby="dropdownMenuLink"
+                  id="topicDropdown"
                 >
-                  <a class="dropdown-item" href="#">Novice</a>
-                  <a class="dropdown-item" href="#">Intermediate</a>
-                  <a class="dropdown-item" href="#">Expert</a>
                 </div>
               </div>
             </div>
@@ -177,16 +176,13 @@ f<!DOCTYPE html>
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-                  <span>Most Popular</span>
+                  <span id="sortTitle">Most Popular</span>
                 </a>
-
                 <div
                   class="dropdown-menu mt-0"
                   aria-labelledby="dropdownMenuLink"
+                  id="sortDropdown"
                 >
-                  <a class="dropdown-item" href="#">Most Popular</a>
-                  <a class="dropdown-item" href="#">Most Recent</a>
-                  <a class="dropdown-item" href="#">Most Viewed</a>
                 </div>
               </div>
             </div>
@@ -197,6 +193,11 @@ f<!DOCTYPE html>
       <!-- Results Section -->
 
       <section class="section results">
+        <div class="container text-center" id="loadingContainer">
+          <div class="spinner-border main-color d-none"  style="width: 5rem; height: 5rem;" role="status" id="courseLoader">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
         <div class="container" id="coursesContainer"></div>
       </section>
     </main>
