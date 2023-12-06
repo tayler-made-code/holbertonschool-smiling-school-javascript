@@ -6,9 +6,9 @@ const popularVideos = document.querySelector("#popVideos"); // Target the popula
 const latestVideos = document.querySelector("#latestVideos"); // Target the latest videos section
 
 $(document).ready(function () { // When the pages loads, fetch the quotes
-  // call fetchQuotes if the page is the index.html
+  // call fetchQuotes and fetchVideos if the page is the homepage
   console.log(window.location.pathname);
-  if (window.location.pathname == "/0-homepage.html") {
+  if (window.location.pathname == "/0-homepage.html" || window.location.pathname == "/1-homepage.html" || window.location.pathname == "/2-homepage.html" || window.location.pathname == "/homepage.html") {
     quoteLoader.classList.remove("d-none");
     fetchQuotes();
     popLoader.classList.remove("d-none");
@@ -75,11 +75,14 @@ $(document).ready(function () { // When the pages loads, fetch the quotes
       });
   }
 
-  if (window.location.pathname == "/0-pricing.html") {
+  if (window.location.pathname == "/0-pricing.html" || window.location.pathname == "/pricing.html") {
     quoteLoader.classList.remove("d-none");
     fetchQuotes();
   }
 
+  if (window.location.pathname == "/0-courses.html" || window.location.pathname == "/courses.html") {
+    console.log("courses");
+  }
 });
 
 function fetchQuotes() {  // Fetch the quotes from the API
