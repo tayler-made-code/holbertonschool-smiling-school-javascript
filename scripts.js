@@ -243,7 +243,7 @@ function createVideoCard(video) {
   playButton.style.position = "absolute";
   playButton.style.bottom = "50%";
   playButton.style.left = "50%";
-  playButton.style.transform = "translate(-50%, -50%)";
+  playButton.style.transform = "translate(-50%, -75%)";
 
   let videoCardBody = document.createElement("div");
   videoCardBody.classList.add("card-body");
