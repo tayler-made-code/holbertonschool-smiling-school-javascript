@@ -1,9 +1,16 @@
+// Targets and Loaders
+
 const quoteSection = document.querySelector("#quote-carousel") // Target the quote section
 const quoteLoader = document.querySelector("#quoteLoader"); // Target the loader
-const popLoader = document.querySelector("#popLoader"); // Target the loader
-const latestLoader = document.querySelector("#latestLoader"); // Target the loader
+
 const popularVideos = document.querySelector("#popVideos"); // Target the popular videos section
+const popLoader = document.querySelector("#popLoader"); // Target the loader
+
 const latestVideos = document.querySelector("#latestVideos"); // Target the latest videos section
+const latestLoader = document.querySelector("#latestLoader"); // Target the loader
+
+const coursesSection = document.querySelector("#coursesContainer"); // Target the courses section
+const courseLoader = document.querySelector("#courseLoader"); // Target the loader
 
 $(document).ready(function () { // When the pages loads, fetch the quotes
   // call fetchQuotes and fetchVideos if the page is the homepage
@@ -75,18 +82,20 @@ $(document).ready(function () { // When the pages loads, fetch the quotes
       });
   }
 
+  // call fetchQuotes if the page is the pricing page
   if (window.location.pathname == "/0-pricing.html" || window.location.pathname == "/pricing.html") {
     quoteLoader.classList.remove("d-none");
     fetchQuotes();
   }
 
+  // call fetchCourses if the page is the courses page
   if (window.location.pathname == "/0-courses.html" || window.location.pathname == "/courses.html") {
-    console.log("courses");
+    // courseLoader.classList.remove("d-none");
+    fetchCourses();
   }
 });
 
 function fetchQuotes() {  // Fetch the quotes from the API
-  // Add the loader
   fetch("https://smileschool-api.hbtn.info/quotes")
     .then((response) => response.json())
     .then((quotes) => {
@@ -158,7 +167,7 @@ function fetchQuotes() {  // Fetch the quotes from the API
 
 function fetchVideos(section) {
   return new Promise((resolve, reject) => {
-    // Check to see which section is being called
+    
     let url = section === popularVideos ? "https://smileschool-api.hbtn.info/popular-tutorials" : "https://smileschool-api.hbtn.info/latest-videos";
 
     fetch(url)
@@ -296,3 +305,60 @@ function createVideoCard(video) {
 
   return videoCard;
 }
+
+function fetchCourses(q, topic = "all", sort = "most_popular") {
+
+  // set the url and check if there is a keyword
+  let url = q ? `https://smileschool-api.hbtn.info/courses?q=${q}&topic=${topic}&sort=${sort}` : `https://smileschool-api.hbtn.info/courses/?topic=${topic}&sort=${sort}`;
+
+  console.log(url);
+
+  fetch(url)
+    .then((response) => response.json())
+    .then((results) => {
+      console.log(results); // For testing purposes
+
+      // console.log how many courses there are
+      console.log(results.courses.length);
+
+      // save the courses in a variable
+      let courses = results.courses;
+
+      // create a div with section-title, in that div create a span
+      // with the number of courses
+      let sectionTitle = document.createElement("div");
+      sectionTitle.classList.add("section-title");
+
+      let courseCount = document.createElement("span");
+      courseCount.classList.add("text-muted", "video-count");
+      courseCount.innerHTML = `${courses.length} videos`;
+
+      // append the elements to the page
+      coursesSection.appendChild(sectionTitle);
+      sectionTitle.appendChild(courseCount);
+
+      // create a row for all of the courses
+      let courseRow = document.createElement("div");
+      courseRow.classList.add("row");
+
+      // append the row to the page
+      coursesSection.appendChild(courseRow);
+
+      // create a card for each course
+      courses.forEach((course) => {
+        let courseSizing = document.createElement("div");
+        courseSizing.classList.add("col-12", "col-sm-4", "col-lg-3", "d-flex", "justify-content-center");
+
+        let courseCard = createVideoCard(course);
+        courseCard.classList.remove("px-3");
+
+        courseRow.appendChild(courseSizing);
+        courseSizing.appendChild(courseCard);
+      });
+
+
+    })
+    .catch((error) => {
+      console.log("error", error);
+    });
+} 
