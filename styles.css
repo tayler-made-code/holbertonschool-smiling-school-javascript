@@ -304,10 +304,6 @@
   padding-bottom: 87px;
 }
 
-.section .card-img-overlay {
-  /* top: 25px; */
-  top: 5%;
-}
 .section .card-title {
   font-size: 16px;
   line-height: 20px;
@@ -902,26 +898,23 @@
 }
 
 .slick-prev::before {
-  width: 40px; /* Set the width of the arrow */
-  height: 40px; /* Set the height of the arrow */
+  width: 30px;
+  height: 65px;
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 1;
   background-image: url('./images/arrow_black_left.png'); /* Replace with your image path */
-  background-size: cover; /* Adjust the background size as needed */
-  cursor: pointer;
-  border: none;
-  outline: none;
+  background-size: cover;
+  background-position: center;
 }
 
 .slick-next::before {
-  width: 40px; /* Set the width of the arrow */
-  height: 40px; /* Set the height of the arrow */
+  width: 30px;
+  height: 65px;
   position: absolute;
   background-image: url('./images/arrow_black_right.png'); /* Replace with your image path */
-  background-size: cover; /* Adjust the background size as needed */
-  cursor: pointer;
-  border: none;
-  outline: none;
+  background-size: cover;
+  background-position: center;
+}
+
+.slick-next {
+  margin-right: 1.75rem;
 }
