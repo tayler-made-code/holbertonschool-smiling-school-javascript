@@ -1,6 +1,17 @@
 # Holberton Smiling School (Bootstrap Project)
 
-These group of web pages were coded from scratch with the help of the Boostrap Framework and based on some design models given on Figma.
+![homepage](https://iili.io/J8lvMQV.jpg)
+
+## About the Project
+This project was one of my favorites to work on during my Third Trimester at Atlas(Formerly Holberton). We were tasked with developing a website from scratch using Figma designs and Bootstrap. This project stands as a testament to my skills as a developer boasting fully functional and dynamic pages.
+
+## My Approach
+Time was not my ally during this project due to personal responsibilities and my student tutor responsiblities. I decided a more methodical approach would be necessary if I was going to make it to the finish line. Bootstrap did provide a solid framework, but it was my JavaScript that truly brought the website to life.
+
+## Challenges Faced
+Every project will have it's hurdles, and for me it was the video cards. Hours were spent tweaking and refining them until they felt right. This challenge was necessary though as I was able to reuse my code througout the project and spend the rest of my time working in areas that were going to need a more tailored approach
+
+## Resources
 
 [Figma Homepage](https://www.figma.com/file/QYQqMYbdpAHL5xTclwJKSI/Homepage)
 
@@ -8,72 +19,13 @@ These group of web pages were coded from scratch with the help of the Boostrap F
 
 [Figma Courses](https://www.figma.com/file/ivg3abH1HLmMayBgjGg1Qf/Courses)
 
-The designs were planned for Desktop, Tablet, and Mobile.
-
-# Homepage
-
-| **Desktop (Width: 1440 px)**                              | **Tablet (Width: 768 px)**                              | **Mobile (Width: 576 px)**                              |
-| --------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| ![Desktop](https://i.ibb.co/pKGgC0J/Homepage-Desktop.png) | ![Tablet](https://i.ibb.co/6XBLwf9/Homepage-Tablet.png) | ![Mobile](https://i.ibb.co/NVBK21F/Homepage-Mobile.png) |
-
-# Pricing
-
-| **Desktop (Width: 1440 px)**                             | **Tablet (Width: 768 px)**                             | **Mobile (Width: 576 px)**                             |
-| -------------------------------------------------------- | ------------------------------------------------------ | ------------------------------------------------------ |
-| ![Desktop](https://i.ibb.co/RvSJ2YS/Pricing-Desktop.png) | ![Tablet](https://i.ibb.co/Gkvsf0Y/Pricing-Tablet.png) | ![Mobile](https://i.ibb.co/6RwmYck/Pricing-Mobile.png) |
-
-# Courses
-
-| **Desktop (Width: 1440 px)**                             | **Tablet (Width: 768 px)**                             | **Mobile (Width: 576 px)**                             |
-| -------------------------------------------------------- | ------------------------------------------------------ | ------------------------------------------------------ |
-| ![Desktop](https://i.ibb.co/y51S3HX/Courses-Desktop.png) | ![Tablet](https://i.ibb.co/28qK1g0/Courses-Tablet.png) | ![Mobile](https://i.ibb.co/f8zNgkx/Courses-Mobile.png) |
-
-# Sections
-
-The Holberton Smiling School web pages were developed by sections using the Bootstrap Front-End framework and CSS styles.
-
-## CSS File
-
-[Styles](https://github.com/jzamora5/holberton-smiling-school/blob/master/styles.css)
-
-## Homepage
-
-[Homepage Header/Hero Section](https://github.com/jzamora5/holberton-smiling-school/blob/master/0-homepage.html)
-
-[Carousel of quotes](https://github.com/jzamora5/holberton-smiling-school/blob/master/1-homepage.html)
-
-[Popular Videos](https://github.com/jzamora5/holberton-smiling-school/blob/master/2-homepage.html)
-
-[Row of smiles](https://github.com/jzamora5/holberton-smiling-school/blob/master/3-homepage.html)
-
-[Latest Videos](https://github.com/jzamora5/holberton-smiling-school/blob/master/4-homepage.html)
-
-[Footer](https://github.com/jzamora5/holberton-smiling-school/blob/master/homepage.html)
-
-## Pricing
-
-[Pricing Header](https://github.com/jzamora5/holberton-smiling-school/blob/master/0-pricing.html)
-
-[Prices Grid](https://github.com/jzamora5/holberton-smiling-school/blob/master/1-pricing.html)
-
-[Quotes Section](https://github.com/jzamora5/holberton-smiling-school/blob/master/2-pricing.html)
-
-[FAQ](https://github.com/jzamora5/holberton-smiling-school/blob/master/3-pricing.html)
-
-[Footer](https://github.com/jzamora5/holberton-smiling-school/blob/master/pricing.html)
-
-## Courses
-
-[Courses Header](https://github.com/jzamora5/holberton-smiling-school/blob/master/0-courses.html)
-
-[Search Filters](https://github.com/jzamora5/holberton-smiling-school/blob/master/1-courses.html)
-
-[List of Results](https://github.com/jzamora5/holberton-smiling-school/blob/master/2-courses.html)
-
-[Footer](https://github.com/jzamora5/holberton-smiling-school/blob/master/courses.html)
-
 # Author:
+
+Tayler Coon:
+Hey there, I'm Tayler Coon, a Full-Stack Enginner with a passion for turning ideas into reality through code! When I'm not coding, you'll likely find me under my Datsun or playing Disc Golf. Let's connect on [LinkedIn](https://www.linkedin.com/in/taylercoon/)! Feel free to explore more of my projects on [Github](https://github.com/tayler-made-code)
 
 Jhoan Zamora: [jzamora5](https://github.com/jzamora5)
 
-Tayler Coon: [tayler-made-code](https://github/tayler-made-code)
+<!-- https://freeimage.host/i/J8lvMQV
+https://freeimage.host/i/J8lvWCB
+https://freeimage.host/i/J8lvGhQ -->

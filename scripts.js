@@ -77,7 +77,7 @@ $(document).ready(function () { // When the pages loads, fetch the quotes
             {
               breakpoint: 768,
               settings: {
-                slidesToShow: 4,
+                slidesToShow: 3.99,
               }
             }
           ]
@@ -191,12 +191,12 @@ function fetchVideos(section) {
         }
 
         // if number of videos is 4 or less, perform the following twice
-        if (videos.length <= 4) {
-          let videosLength = videos.length;
-          for (let i = 0; i < (videosLength * 2) - videosLength; i++) {
-            videos.push(videos[i]);
-          }
-        }
+        // if (videos.length <= 4) {
+        //   let videosLength = videos.length;
+        //   for (let i = 0; i < (videosLength * 2) - videosLength; i++) {
+        //     videos.push(videos[i]);
+        //   }
+        // }
 
         // Loop through the videos and add them to the page
         videos.forEach((video) => {
@@ -405,7 +405,21 @@ function setTopicsAndSort() {
     }); 
 }
 
-// Search Event Listeners
+function advancedSearch(q, topic, sort) {
+  // clear the courses section and add the loader
+  coursesSection.innerHTML = '';
+  courseLoader.classList.remove("d-none");
+
+  // let advancedSearchTopic = topicTitle.innerHTML;
+  // advancedSearchTopic = advancedSearchTopic.slice(1).toLowerCase();
+  let advancedSearchTopic = topic.toLowerCase();
+  let advancedSearchSort = sort.replace(/ /g, "_").toLowerCase();
+
+  // fetch the filtered courses
+  fetchCourses(searchBar.value, advancedSearchTopic, advancedSearchSort);
+}
+
+// Event Listeners
 document.querySelector("#searchBar").addEventListener("keyup", (event) => {
   if (event.keyCode === 13) {
     advancedSearch(searchBar.value, topicTitle.innerHTML, sortTitle.innerHTML);
@@ -449,18 +463,9 @@ document.querySelector("#sortDropdown").addEventListener("click", () => {
   });
 });
 
-
-
-function advancedSearch(q, topic, sort) {
-  // clear the courses section and add the loader
-  coursesSection.innerHTML = '';
-  courseLoader.classList.remove("d-none");
-
-  // let advancedSearchTopic = topicTitle.innerHTML;
-  // advancedSearchTopic = advancedSearchTopic.slice(1).toLowerCase();
-  let advancedSearchTopic = topic.toLowerCase();
-  let advancedSearchSort = sort.replace(/ /g, "_").toLowerCase();
-
-  // fetch the filtered courses
-  fetchCourses(searchBar.value, advancedSearchTopic, advancedSearchSort);
-}
+// when enter is pressed anywhere on the page, call advancedSearch
+document.addEventListener("keyup", (event) => {
+  if (event.keyCode === 13) {
+    advancedSearch(searchBar.value, topicTitle.innerHTML, sortTitle.innerHTML);
+  }
+});
