@@ -3,15 +3,15 @@
 ![homepage](https://iili.io/J8lvMQV.jpg)
 
 ## About the Project
-This project was one of my favorites to work on during my Third Trimester at Atlas(Formerly Holberton). We were tasked with developing a website from scratch using Figma designs and Bootstrap. This project stands as a testament to my skills as a developer boasting fully functional and dynamic pages.
+This project holds a special place in my heart, representing a journey of creativity and determination during my Third Trimester at Atlas (formerly Holberton). Charged with the task of bringing Figma designs to life using Bootstrap, I embarked on a mission to craft a website that not only met the requirements but exceeded expectations. The result? A showcase of my development skills, featuring fully functional and dynamic pages that breathe life into the digital realm.
 
 ## My Approach
-Time was not my ally during this project due to personal responsibilities and my student tutor responsiblities. I decided a more methodical approach would be necessary if I was going to make it to the finish line. Bootstrap did provide a solid framework, but it was my JavaScript that truly brought the website to life.
+Time was a scarce commodity during this project, with personal responsibilities and the demands of being a student tutor vying for my attention. In the face of these challenges, I knew I needed a methodical approach to navigate to the finish line successfully. While Bootstrap provided a solid foundation, it was my mastery of JavaScript that truly set the website apart. Each line of code was meticulously crafted to ensure responsiveness and interactivity, making every minute count in the race against time.
 
 ![videocards_and_filters](https://iili.io/J8lvWCB.jpg)
 
 ## Challenges Faced
-Every project will have it's hurdles, and for me it was the video cards. Hours were spent tweaking and refining them until they felt right. This challenge was necessary though as I was able to reuse my code througout the project and spend the rest of my time working in areas that were going to need a more tailored approach
+No project is without its hurdles, and for me, it was the intricate dance of perfecting the video cards. Countless hours were dedicated to fine-tuning and refining them until they felt just right. Yet, this challenge wasn't just an obstacle; it was an opportunity. By investing time in creating reusable code, I was able to streamline development and focus on areas requiring a more tailored approach.
 
 ![coursespage](https://iili.io/J8lvGhQ.jpg)
 
@@ -27,6 +27,6 @@ Every project will have it's hurdles, and for me it was the video cards. Hours w
 # Author:
 
 Tayler Coon:
-Hey there, I'm Tayler Coon, a Full-Stack Enginner with a passion for turning ideas into reality through code! When I'm not coding, you'll likely find me under my Datsun or playing Disc Golf. Let's connect on [LinkedIn](https://www.linkedin.com/in/taylercoon/)! Feel free to explore more of my projects on [Github](https://github.com/tayler-made-code)
+Hey there, I'm Tayler Coon, a Full-Stack Engineer with a passion for turning ideas into reality through code! When I'm not coding, you'll likely find me tinkering under my Datsun or mastering the art of Disc Golf. Let's connect on[LinkedIn](https://www.linkedin.com/in/taylercoon/)! Feel free to explore more of my projects on [Github](https://github.com/tayler-made-code)
 
 Jhoan Zamora: [jzamora5](https://github.com/jzamora5)
