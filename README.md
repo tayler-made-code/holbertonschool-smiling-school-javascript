@@ -27,6 +27,6 @@ No project is without its hurdles, and for me, it was the intricate dance of per
 # Author:
 
 Tayler Coon:
-Hey there, I'm Tayler Coon, a Full-Stack Engineer with a passion for turning ideas into reality through code! When I'm not coding, you'll likely find me tinkering under my Datsun or mastering the art of Disc Golf. Let's connect on[LinkedIn](https://www.linkedin.com/in/taylercoon/)! Feel free to explore more of my projects on [Github](https://github.com/tayler-made-code)
+Hey there, I'm Tayler Coon, a Full-Stack Engineer with a passion for turning ideas into reality through code! When I'm not coding, you'll likely find me tinkering under my Datsun or mastering the art of Disc Golf. Let's connect on [LinkedIn](https://www.linkedin.com/in/taylercoon/)! Feel free to explore more of my projects on [Github](https://github.com/tayler-made-code)
 
 Jhoan Zamora: [jzamora5](https://github.com/jzamora5)
