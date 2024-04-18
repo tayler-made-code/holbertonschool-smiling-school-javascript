@@ -189,15 +189,6 @@ function fetchVideos(section) {
           latestLoader.classList.add("d-none");
           // latestLoader.classList.remove("text-center");
         }
-
-        // if number of videos is 4 or less, perform the following twice
-        // if (videos.length <= 4) {
-        //   let videosLength = videos.length;
-        //   for (let i = 0; i < (videosLength * 2) - videosLength; i++) {
-        //     videos.push(videos[i]);
-        //   }
-        // }
-
         // Loop through the videos and add them to the page
         videos.forEach((video) => {
           let videoCard = createVideoCard(video);
